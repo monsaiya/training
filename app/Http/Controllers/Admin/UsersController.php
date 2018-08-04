@@ -25,7 +25,7 @@ class UsersController extends Controller
                ->get();*/
 
 
-        $mods = UserMod::find([1, 2, 3]);
+       /* $mods = UserMod::find([1, 2, 3]);
 
 
 
@@ -36,7 +36,46 @@ class UsersController extends Controller
         }
 
         $count = UserMod::where('active', 1)->count();
-        echo "Total Count = ".$count."" ;
+        echo "Total Count = ".$count."" ;*/
+        
+
+        /*$data = [
+            'name' => 'My Name',
+            'surname' => 'My SurName',
+            'email' => 'myemail@gmail.com'
+        ];
+
+        $item = [
+            'item1' => 'My Value1',
+            'item2' => 'My Value2'
+        ];
+
+        $results = [
+            'data' => $data,
+            'item' => $item
+        ];
+
+        return view('test', $results);*/
+
+       /* $data = [
+           'name' => 'My Name',
+           'surname' => 'My SurName',
+           'email' => 'myemail@gmail.com'
+       ];
+
+        $user = UserMod::find(1);
+        $mods = UserMod::all();
+
+        return view('test', compact('data', 'user', 'mods'));*/
+
+       // return view('admin.user.lists');
+
+        $mods = UserMod::paginate(10);
+        return view('admin.user.lists', compact('mods') );
+
+
+
+
 
         
     }
