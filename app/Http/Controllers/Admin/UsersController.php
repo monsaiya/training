@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User as UserMod;
+use App\Model\Shop as ShopMod;
+use App\Model\product as ProductMod;
 
 class UsersController extends Controller
 {
@@ -57,7 +59,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request); exit;
+        $mod = new UserMod;
+        $mod->name = $request->name;
+        $mod->email = $request->email;
+        $mod->password = bcrypt($request->password);
+        $mod->save();
+
+
     }
 
     /**
@@ -68,8 +77,39 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $mod = UserMod::find($id);
-        echo $mod->name ." ".$mod->password."<br>";
+       /* $mod = UserMod::find($id);
+        echo $mod->name ." ".$mod->password."<br>";*/
+       
+
+       /* $shop = UserMod::find($id)->shop;
+        echo $shop->name;
+
+        echo "<br>";
+
+        $user = UserMod::find($id);
+        echo $user->shop->name;*/
+
+       /* $mod = ShopMod::find($id);
+        echo $mod->name;
+
+        echo "<br>";
+
+        echo $mod->user->name; */
+
+        $products = ProductMod::find($id);
+
+        echo $products->name;
+        echo "<br>";
+        echo $products->shop->name;
+ 
+       /* foreach ($products as $product) {
+            echo $product ->name;
+            echo "<br>";
+        }*/
+
+
+
+
     }
 
     /**
@@ -92,7 +132,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $mod = UserMod::find($id);
+        $mod->name = $request->name;
+        $mod->email = $request->email;
+        $mod->password = bcrypt($request->password);
+        $mod->save();
+
+        return "update"; 
     }
 
     /**
@@ -103,6 +150,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mod = UserMod::find($id);
+        $mod -> delete();
+        return "delete";
     }
 }
