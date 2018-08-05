@@ -17,7 +17,8 @@
                 <!-- Button trigger modal -->
                 <form method="POST" action="{{ URL::to($url.'/'.$id) }}">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    
+<input type="hidden" name="_token" value="{{ csrf_token() }}"><!-- ปลดล็อกsecurity ในตัวของ bootstap -->
                     <input type="submit" value="Delete"  class="btn btn-danger" data-toggle="modal" data-target="#modal_{{ $name }}_{{ $id }}">
                 </form>
 
